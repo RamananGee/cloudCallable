@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mathametical Operation</h1>
+    <button onclick="add()"> Add</button>
+    <button onclick="sub()">Subtract</button>
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-functions.js"></script>
+<script>
+    
+    var firebaseConfig = {
+    apiKey: "AIzaSyBGiCnfs9h2Z2UU5-yHZaaIf-YMoCQ3koM",
+    authDomain: "cloud-ad156.firebaseapp.com",
+    databaseURL: "https://cloud-ad156.firebaseio.com",
+    projectId: "cloud-ad156",
+    storageBucket: "cloud-ad156.appspot.com",
+    messagingSenderId: "123350662690",
+    appId: "1:123350662690:web:e7b0d2bd64a2251a3e947b",
+    measurementId: "G-2VDSSLDYZF"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  firebase.functions().useFunctionsEmulator('http://localhost:5001');
+  function add(){
+  let addition = firebase.functions().httpsCallable('addition');
+
+  let allPromises = Promise.all([
+      addition({ a:1, b:3}),
+      addition({ a:1, b:4})
+  ]).then(e => {
+      console.log(e);
+  });
+}
+
+function sub(){
+  let sub = firebase.functions().httpsCallable('sub');
+
+  let allPromises = Promise.all([
+      sub({ a:5, b:3}),
+      sub({ a:4, b:1})
+  ]).then(e => {
+      console.log(e);
+  });
+}
+
+function mul(){
+  let mul = firebase.functions().httpsCallable('mul');
+
+  let allPromises = Promise.all([
+      mul({ a:5, b:3}),
+      mul({ a:4, b:1})
+  ]).then(e => {
+      console.log(e);
+  });
+}
+
+function div(){
+  let sub = firebase.functions().httpsCallable('div');
+
+  let allPromises = Promise.all([
+      div({ a:5, b:3}),
+      div({ a:4, b:1})
+  ]).then(e => {
+      console.log(e);
+  });
+}
+
+</script>
+</html>
